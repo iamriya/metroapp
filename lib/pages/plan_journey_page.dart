@@ -12,8 +12,9 @@ class PlanJourneyPage extends StatefulWidget {
 
 class _PlanJourneyPageState extends State<PlanJourneyPage> {
   GlobalKey<AutoCompleteTextFieldState<Station>> sourceKey = new GlobalKey();
-  GlobalKey<AutoCompleteTextFieldState<Station>> destinationKey = new GlobalKey();
-  
+  GlobalKey<AutoCompleteTextFieldState<Station>> destinationKey =
+      new GlobalKey();
+
   TextEditingController fromStationController = new TextEditingController();
   TextEditingController toStationController = new TextEditingController();
   TextEditingController temporaryController = new TextEditingController();
@@ -196,9 +197,13 @@ class _PlanJourneyPageState extends State<PlanJourneyPage> {
                     borderRadius: BorderRadius.circular(50.0)),
                 color: Colors.blue,
                 onPressed: () {
-                  var from  = stationList[3];
+                  var from = stationList[3];
                   var to = stationList[9];
-               var intermediateStation =   stationList.takeWhile((station)=>station.id >=from.id && station.id <= to.id ).toList();
+                  var intermediateStation = stationList
+                      .where((station) =>
+                          station.id >= from.id && station.id <= to.id)
+                      .toList();
+                  print(intermediateStation);
                 },
                 child: Text(
                   'Plan Journey',
